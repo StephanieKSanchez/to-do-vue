@@ -25,6 +25,11 @@ const addTodo = () => {
   });
 };
 
+const removeTodo = (todo) => {
+  todos.value = todos.value.filter((t) => t !== todo); // loop through every todo item and check if it's not equal to todo
+  //then add it back to the array. If it is equal to the todo then don't add it back
+};
+
 watch(
   todos,
   (newVal) => {
@@ -104,6 +109,9 @@ onMounted(() => {
           </label>
           <div class="todo-content">
             <input type="text" v-model="todo.content" />
+          </div>
+          <div class="actions">
+            <button class="delete" @click="removeTodo(todo)">Delete</button>
           </div>
         </div>
       </div>
