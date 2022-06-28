@@ -41,6 +41,7 @@ watch(name, (newVal) => {
 
 onMounted(() => {
   name.value = localStorage.getItem("name") || "";
+  todos.value = JSON.parse(localStorage.getItem("todos")) || [];
 });
 </script>
 
@@ -90,6 +91,5 @@ onMounted(() => {
         <input type="submit" value="Add todo" />
       </form>
     </section>
-    {{ todos_ascending }}
   </main>
 </template>
