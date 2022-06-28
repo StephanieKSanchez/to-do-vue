@@ -13,7 +13,27 @@ const todos_ascending = computed(() =>
   })
 );
 
-const addTodo = () => {};
+const addTodo = () => {
+  if (input_content.value.trim() === "" || input_category.value === null) {
+    return; //don't do anything
+  }
+  todos.value.push({
+    content: input_content.value,
+    category: input_category.value,
+    done: false,
+    createdAt: new Date().getTime(),
+  });
+};
+
+watch(
+  todos,
+  (newVal) => {
+    localStorage.setItem("todos", JSON.stringify(newVal));
+  },
+  { deep: true }
+); //passing option & setting it to deep means it's going to look through
+//each array item/element & if anything changes inside of todos.value, deep will catch
+// it and call the function again
 
 watch(name, (newVal) => {
   localStorage.setItem("name", newVal);
